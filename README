@@ -1,0 +1,15 @@
+I See and Hear - Screen and Audio Recorder
+
+Small program to record and output media to a file
+or a streaming website.
+
+TODO:
+- Sound recording
+- Reduce CPU usage
+- Handle window resizing
+- Handle window deletion
+- Proper get client with xcb_query_tree
+- Highlight used sources in ls (leading `>` to output)
+- Multiple video and audio sources
+- Use xrandr to set default to monitor size
+- Implement livestreaming with -k flag for stream key
