@@ -353,6 +353,10 @@ cmd(void *args)
 					pthread_mutex_unlock(&app->hdl_lock);
 
 				} else {
+					if (app->capture == 1) {
+						fprintf(stderr, "%s: cannot set audio devices while capturing\n", __progname);
+						break;
+					}
 					struct tk_item *setitm = TAILQ_NEXT(icmd, entries);
 					const char *errstr;
 					
