@@ -294,7 +294,7 @@ audio_sndio_capture(struct ishio_audio_buf *buf)
 
 	indx = 0;
 	TAILQ_FOREACH(c, &shdl->queue, entries) {
-		count = 480 * 2;
+		count = 480;
 		int16_t frames[ISHIO_AUDIO_SAMPLES * 4];
 		uint64_t to_read = count;
 		memset(frames, 0, sizeof(frames));
