@@ -335,6 +335,7 @@ get_clients(struct client_head *head, xcb_window_t window)
 	wms_reply = xcb_intern_atom_reply(xhdl->conn, wms_cookie, NULL);
 
 	if (window != xhdl->screen->root) {
+		return;
 		if (wms_reply == NULL)
 			return;
 
@@ -438,6 +439,7 @@ get_clients(struct client_head *head, xcb_window_t window)
 		free(info);
 		return;
 	}
+	shmctl(info->shmid, IPC_RMID, NULL);
 
 	if (TAILQ_EMPTY(head))
 		TAILQ_INSERT_HEAD(head, info, entries);
@@ -459,7 +461,6 @@ free_client(struct client *c)
 {
 	xcb_shm_detach(xhdl->conn, c->shmseg);
 	shmdt(c->pixels);
-	shmctl(c->shmid, IPC_RMID, NULL);
 	if (c->name)
 		free(c->name);
 	free(c);

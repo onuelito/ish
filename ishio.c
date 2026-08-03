@@ -126,9 +126,9 @@ ishio_audio_buf_new()
 }
 
 int 
-ishio_fill_audio_buf(struct ishio_hdl *hdl, struct ishio_dev *dev, struct ishio_audio_buf *buf)
+ishio_fill_audio_buf(struct ishio_hdl *hdl, struct ishio_audio_buf *buf)
 {
 	struct ishio_int_hdl *ihdl = (struct ishio_int_hdl *)hdl;
-	int ret = ihdl->ahdl->ops->capture(dev, buf);
+	int ret = ihdl->ahdl->ops->capture(buf);
 	return 0;
 }

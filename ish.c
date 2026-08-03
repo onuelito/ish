@@ -76,6 +76,7 @@ main(int argc, char **argv)
 	signal(SIGSEGV, on_interrupt);
 
 	app.hdl = ishio_open();
+	app.cons = NULL;
 	
 	if (app.hdl == NULL) {
 		fprintf(stderr, "%s: failed to open handle\n", __progname);
@@ -142,7 +143,9 @@ main(int argc, char **argv)
 	}
 
 	ishio_close(app.hdl);
-	cons_free(app.cons); 
+	if (app.cons != NULL)
+		cons_free(app.cons); 
+
 	fprintf(stdout, "%s: bye\n", __progname);
 
 	return 0;
@@ -217,7 +220,6 @@ void*
 produce_audio(void *args)
 {
 	struct app *app = (struct app *)args;
-	struct timespec last = app->start_time;
 	struct ishio_audio_buf *abuf;
 
 	pthread_mutex_lock(&app->capture_lock);
@@ -229,14 +231,11 @@ produce_audio(void *args)
 	abuf = ishio_audio_buf_new();
 
 	while (app->running == 1) {
-		pthread_mutex_lock(&app->audio_lock);
+		memset(abuf->data, 0, abuf->count * 4);
+		abuf->count = 0;
 
 		if (app->audio != NULL)
-			ishio_fill_audio_buf(app->hdl, app->audio, abuf);
-
-		clock_gettime(CLOCK_MONOTONIC, &last);
-
-		pthread_mutex_unlock(&app->audio_lock);
+			ishio_fill_audio_buf(app->hdl, abuf);
 
 		cons_write_audio(app->cons, abuf);
 	}

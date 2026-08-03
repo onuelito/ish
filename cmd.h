@@ -13,6 +13,7 @@ struct cmd_map {
 #define CMD_CAPTURE		5
 #define CMD_WIDTH		6
 #define CMD_HEIGHT		7
+#define CMD_ADD			8
 
 #define MAP_QUIT		(struct cmd_map) { "quit", CMD_QUIT }
 #define MAP_MODE		(struct cmd_map) { "mode", CMD_MODE }
@@ -21,6 +22,7 @@ struct cmd_map {
 #define MAP_CAPTURE		(struct cmd_map) { "capture", CMD_CAPTURE }
 #define MAP_WIDTH		(struct cmd_map) { "width", CMD_WIDTH }
 #define MAP_HEIGHT		(struct cmd_map) { "height", CMD_HEIGHT }
+#define MAP_ADD			(struct cmd_map) { "add", CMD_ADD }
 
 
 #define WHICH_COMMAND(cmd) \
@@ -32,4 +34,5 @@ struct cmd_map {
 	strcmp(cmd, MAP_CAPTURE.name) == 0 ? MAP_CAPTURE.id : \
 	strcmp(cmd, MAP_WIDTH.name) == 0 ? MAP_WIDTH.id : \
 	strcmp(cmd, MAP_HEIGHT.name) == 0 ? MAP_HEIGHT.id : \
+	strcmp(cmd, MAP_ADD.name) == 0 ? MAP_ADD.id : \
 	CMD_NONE

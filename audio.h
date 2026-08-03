@@ -8,7 +8,7 @@ struct audio_hdl {
 struct audio_ops {
 	void (*close) (void);
 	struct ishio_dev *(*add) (const char*);
-	int (*capture) (struct ishio_dev *, struct ishio_audio_buf *);
+	int (*capture) (struct ishio_audio_buf *);
 };
 
 struct audio_hdl *audio_open(void);

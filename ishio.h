@@ -52,6 +52,6 @@ struct ishio_video_buf *ishio_video_buf_new(uint16_t, uint16_t, uint8_t);
 int ishio_fill_video_buf(struct ishio_hdl *, struct ishio_dev *, struct ishio_video_buf *);
 
 struct ishio_audio_buf *ishio_audio_buf_new(void);
-int ishio_fill_audio_buf(struct ishio_hdl *, struct ishio_dev *, struct ishio_audio_buf *);
+int ishio_fill_audio_buf(struct ishio_hdl *, struct ishio_audio_buf *);
 
 #endif
