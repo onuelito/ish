@@ -1,4 +1,4 @@
-.Dd $Mdocdate: August 02 2026$
+.Dd $Mdocdate: August 03 2026$
 .Dt ISH 1
 .Os
 .Sh NAME
@@ -8,8 +8,37 @@
 .Nm ish
 .Ar file
 .Sh DESCRIPTION
-TBA
+.Nm
+is a program that allows the users to select audio devices and 
+sound devices on OpenBSD to be outputed to a mastroka file.
+
+The main motivation of this program was to provide an easier to
+use alternative to ffmpeg-cli.
 .Sh COMMANDS
-TBA
+This program is executed in two modes: video mode (mode 0) and
+audio mode (mode 1). (The default mode is mode 0).
+
+Before calling `capture`, it is important to configure the
+width and height of your capture as well as selecting devices
+needed. These cannot be configured while capturing.
+
+Here is a list of commands and brief descriptions :
+.Bl -bullet
+.It
+set : In video mode sets the screen device. In audio mode
+adds a device.
+.It
+ls : Video mode only. List screen devices.
+.It
+width: Any mode. Sets capture width.
+.It
+height: Any mode. Sets capture height.
+.It
+capture: Starts capture. Any mode
+.It
+mode: Change between mode 0 or mode 1.
+.It
+quit: Exit the program.
+.El
 .Sh AUTHORS
 .An Onana Onana Xavier Manuel Aq Mt xavier@onana.net
